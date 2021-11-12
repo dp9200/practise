@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">LunchVer2</string>
+    <string name="action_saving">儲存抽籤資料</string>
+    <string name="action_delete">刪除抽籤資料</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">隨機自訂項目</string>
+    <string name="second_fragment_label">隨機數字</string>
+
+    <string name="welcom_word">陽春的抽籤APP</string>
+    <string name="using_lable">抽池中的項目</string>
+    <string name="unused_lable">排除的項目</string>
+    <string name="add_item">新增項目</string>
+    <string name="add_type_btn">儲存籤種</string>
+    <string name="remove_type_btn">移除籤種</string>
+    <string name="clear_btn">全部清除</string>
+    <string name="to_random_num_btn">抽選隨機數字</string>
+    <string name="to_random_item_btn">抽選自訂項目</string>
+    <string name="start_random_btn">抽籤</string>
+    <string name="server_url"></string>
+    <string-array name="random_type_string">
+        <item>自訂項目</item>
+        <item>隨機數字</item>
+    </string-array>>
+    <string-array name="defult_selection">
+        <item>預設</item>
+    </string-array>>
+</resources>

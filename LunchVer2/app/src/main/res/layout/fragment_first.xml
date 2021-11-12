@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="60dp" />
+
+    <Button
+        android:id="@+id/add_type_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_type_btn"
+        android:clickable="true"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline" />
+
+    <Button
+        android:id="@+id/remove_type_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remove_type_btn"
+        android:backgroundTint="@android:color/darker_gray"
+        android:clickable="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/add_type_btn"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintTop_toTopOf="@id/guideline"
+        />
+
+    <Spinner
+        android:id="@+id/type_spinner"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:background="@drawable/spinner"
+        app:layout_constraintBottom_toTopOf="@id/add_item_btn"
+        app:layout_constraintTop_toBottomOf="@id/add_type_btn"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:entries="@array/defult_selection" />
+
+    <TextView
+        android:id="@+id/using_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/using_lable"
+        app:layout_constraintTop_toTopOf="@id/add_item_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/add_type_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/add_item_btn"
+        app:layout_constraintHorizontal_bias="0.15"
+        />
+
+    <Button
+        android:id="@+id/add_item_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/add_item"
+        android:backgroundTint="@color/purple_500"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type_spinner"
+        />
+
+    <ListView
+        android:id="@+id/pool_list"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_marginVertical="25px"
+        android:layout_marginHorizontal="100px"
+        android:background="@drawable/list_view"
+        app:layout_constraintTop_toBottomOf="@+id/add_item_btn"
+        app:layout_constraintBottom_toTopOf="@id/middle_line"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middle_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <Button
+        android:id="@+id/clear_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_btn"
+        app:layout_constraintBottom_toTopOf="@+id/exclude_object_line"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        />
+
+    <TextView
+        android:id="@+id/exclude_text"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/unused_lable"
+        app:layout_constraintBottom_toBottomOf="@+id/clear_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/clear_btn"
+        app:layout_constraintHorizontal_bias="0.15"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/exclude_object_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <ListView
+        android:id="@+id/exclude_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="100px"
+        android:layout_marginRight="100px"
+        android:layout_marginVertical="30px"
+        android:background="@drawable/list_view"
+        app:layout_constraintBottom_toTopOf="@+id/exclude_list_bottom_line"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exclude_object_line" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/exclude_list_bottom_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <Button
+        android:id="@+id/start_random_btn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/start_random_btn"
+        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintTop_toBottomOf="@id/exclude_list_bottom_line"
+        app:layout_constraintRight_toRightOf="@id/button_first"
+        />
+
+    <Button
+        android:id="@+id/button_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_random_num_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintTop_toBottomOf="@+id/start_random_btn"/>
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_height="0dp"
+        android:layout_width="100dp"
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        tools:text="健達出奇蛋"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/button_first"
+        app:layout_constraintTop_toTopOf="@+id/start_random_btn"
+        app:layout_constraintBottom_toBottomOf="@id/button_first"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

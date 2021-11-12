@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondFragment">
+
+    <TextView
+        android:id="@+id/pick_num_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="填入數字範圍 "
+        android:textAlignment="center"
+        android:layout_marginHorizontal="50dp"
+        app:layout_constraintBottom_toTopOf="@id/button_second"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.328"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.212" />
+
+    <TextView
+        android:id="@+id/range_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="到"
+        app:layout_constraintBottom_toBottomOf="@+id/num1_edit"
+        app:layout_constraintEnd_toStartOf="@id/num2_edit"
+        app:layout_constraintStart_toEndOf="@+id/num1_edit"
+        app:layout_constraintTop_toTopOf="@+id/num1_edit" />
+
+    <EditText
+        android:id="@+id/num1_edit"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:hint="數字1"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/pick_num_title"
+        app:layout_constraintStart_toStartOf="@id/pick_num_title"
+        />
+
+    <EditText
+        android:id="@+id/num2_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="數字2"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="@id/num1_edit"
+        app:layout_constraintEnd_toEndOf="@id/pick_num_title"
+        />
+
+    <TextView
+        android:id="@+id/num_result_text"
+        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@id/button_second"
+        app:layout_constraintTop_toBottomOf="@+id/num1_edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/start_random_num_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="開始隨機"
+        app:layout_constraintTop_toBottomOf="@+id/num_result_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_second"
+        />
+
+    <Button
+        android:id="@+id/button_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_random_item_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/start_random_num_btn" />
+</androidx.constraintlayout.widget.ConstraintLayout>
