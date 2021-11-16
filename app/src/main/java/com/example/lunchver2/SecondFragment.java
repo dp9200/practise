@@ -1,6 +1,7 @@
 package com.example.lunchver2;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,14 +16,16 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.lunchver2.aniObject.DisplayAni;
 import com.example.lunchver2.controller.Processor;
+import com.example.lunchver2.controller.RandomNumProcessor;
 import com.example.lunchver2.databinding.FragmentSecondBinding;
-import com.example.lunchver2.myInterface.IPickSystemProcessor;
 import com.example.lunchver2.myInterface.IResultDisplayer;
+import com.example.lunchver2.structObject.DialogBuilder;
 
 public class SecondFragment extends Fragment implements IResultDisplayer {
 
     private FragmentSecondBinding binding;
-    private IPickSystemProcessor processor = null;
+    private Context context = null;
+    private RandomNumProcessor processor = null;
 
     @Override
     public View onCreateView(
@@ -37,7 +40,8 @@ public class SecondFragment extends Fragment implements IResultDisplayer {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        processor = Processor.getMainProcessor().registerDisplayer(this);
+        context = this.getActivity();
+        processor = new RandomNumProcessor(this);
         initStartRandomBtn();
         initToRandomItemBtn();
     }
@@ -97,16 +101,6 @@ public class SecondFragment extends Fragment implements IResultDisplayer {
     }
 
     @Override
-    public void displayUsingItem(String[] items) {
-
-    }
-
-    @Override
-    public void displayExcludeItem(String[] items) {
-
-    }
-
-    @Override
     public void displayPickResult(String[] results) {
         Handler aniHandler = new Handler();
         Runnable aniRunnable = new DisplayAni(results,aniHandler, binding.numResultText);
@@ -115,11 +109,13 @@ public class SecondFragment extends Fragment implements IResultDisplayer {
 
     @Override
     public void showMsg(String msg) {
-
-    }
-
-    @Override
-    public void addTypeToSpinner(String typeName) {
-
+        DialogBuilder format = new DialogBuilder(msg,context);
+        format.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        format.show();
     }
 }

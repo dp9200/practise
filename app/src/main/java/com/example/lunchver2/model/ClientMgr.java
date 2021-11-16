@@ -22,7 +22,18 @@ public class ClientMgr implements IThreadAction {
     private URL urlConnector = null;
     private OkHttpClient httpClient = null;
 
-    public ClientMgr() {
+    private static ClientMgr instance = null;
+
+    public static ClientMgr getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new ClientMgr();
+        }
+        return instance;
+    }
+
+    private ClientMgr() {
         missionPool = new SendMissionPool();
         threadMgr = new ThreadMgr(this);
         httpClient = new OkHttpClient().newBuilder().build();

@@ -19,8 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.lunchver2.aniObject.DisplayAni;
 import com.example.lunchver2.controller.Processor;
 import com.example.lunchver2.databinding.FragmentFirstBinding;
-import com.example.lunchver2.general.Tools;
-import com.example.lunchver2.myInterface.IPickSystemProcessor;
+import com.example.lunchver2.myInterface.IRandomItemDisplayer;
 import com.example.lunchver2.myInterface.IResultDisplayer;
 import com.example.lunchver2.structObject.DialogBuilder;
 import com.example.lunchver2.structObject.TypeRecordFormat;
@@ -28,10 +27,10 @@ import com.example.lunchver2.structObject.TypeRecordFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class FirstFragment extends Fragment implements IResultDisplayer {
+public class FirstFragment extends Fragment implements IRandomItemDisplayer {
 
     private FragmentFirstBinding binding;
-    private IPickSystemProcessor processor = null;
+    private Processor processor = null;
     private Context context = null;
     private DisplayAni displayAni = null;
 

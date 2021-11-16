@@ -6,9 +6,9 @@ import com.example.lunchver2.general.Tools;
 import com.example.lunchver2.model.ClientMgr;
 import com.example.lunchver2.model.DataMgr;
 import com.example.lunchver2.model.PickMachine;
-import com.example.lunchver2.myInterface.IPickSystemProcessor;
-import com.example.lunchver2.myInterface.IResultDisplayer;
+import com.example.lunchver2.myInterface.IRandomItemDisplayer;
 import com.example.lunchver2.myInterface.IMainProcessor;
+import com.example.lunchver2.myInterface.IResultDisplayer;
 import com.example.lunchver2.structObject.SaveFormat;
 import com.example.lunchver2.structObject.TypeRecordFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,12 +16,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
-public class Processor implements IPickSystemProcessor {
+public class Processor implements IMainProcessor {
 
-    private IResultDisplayer resultDisplayer = null;
+    private IRandomItemDisplayer resultDisplayer = null;
     private DataMgr dataMgr = null;
     private PickMachine pickMachine = null;
-    private ClientMgr clientMgr = null;
 
     private static IMainProcessor mainProcessor = null;
 
@@ -36,7 +35,6 @@ public class Processor implements IPickSystemProcessor {
     public Processor() {
         dataMgr = new DataMgr();
         pickMachine = new PickMachine();
-        clientMgr = new ClientMgr();
     }
 
     public void initSavedData(SharedPreferences sharedPreferences)  {
@@ -63,7 +61,6 @@ public class Processor implements IPickSystemProcessor {
         editor.apply();
     }
 
-    @Override
     public void deleteData(SharedPreferences sharedPreferences) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
@@ -71,12 +68,11 @@ public class Processor implements IPickSystemProcessor {
     }
 
     @Override
-    public IPickSystemProcessor registerDisplayer(IResultDisplayer resultDisplayer) {
+    public Processor registerDisplayer(IRandomItemDisplayer resultDisplayer) {
         this.resultDisplayer = resultDisplayer;
         return this;
     }
 
-    @Override
     public void addNewItem(String value) {
         if (dataMgr.checkDataIsEmpty(value)) {
             return;
@@ -88,7 +84,6 @@ public class Processor implements IPickSystemProcessor {
         resultDisplayer.displayUsingItem(usingItems);
     }
 
-    @Override
     public void excludeItem(String item) {
         if (!dataMgr.checkHaveItem(item)) {
             return;
@@ -98,7 +93,6 @@ public class Processor implements IPickSystemProcessor {
         updateView();
     }
 
-    @Override
     public void recycleItem(String item) {
         if (!dataMgr.checkItemIsExclude(item)) {
             return;
@@ -108,7 +102,6 @@ public class Processor implements IPickSystemProcessor {
         updateView();
     }
 
-    @Override
     public void removeItem(String item) {
         if (!dataMgr.checkItemIsExclude(item)) {
             return;
@@ -118,13 +111,11 @@ public class Processor implements IPickSystemProcessor {
         updateView();
     }
 
-    @Override
     public void clearItem() {
         dataMgr.clearUnusedItem();
         updateExcludeView();
     }
 
-    @Override
     public void pickItem() {
         if (dataMgr.checkUsingItemIsEmpty())
         {
@@ -137,20 +128,12 @@ public class Processor implements IPickSystemProcessor {
         resultDisplayer.displayPickResult(result);
     }
 
-    @Override
-    public void pickNum(int num1, int num2) {
-        String[] result = pickMachine.pickNum(num1, num2);
-        uploadResult(result,"抽數字");
-        resultDisplayer.displayPickResult(result);
-    }
-
     private void uploadResult(String[] result,String type)
     {
         int lastIndex = result.length-1;
-        clientMgr.sendResult(result[lastIndex],type);
+        ClientMgr.getInstance().sendResult(result[lastIndex],type);
     }
 
-    @Override
     public void addType(String typeName, int index) {
         if (dataMgr.checkHaveType(typeName)) {
             resultDisplayer.showMsg("已經有該類別了");
@@ -160,7 +143,6 @@ public class Processor implements IPickSystemProcessor {
         }
     }
 
-    @Override
     public void selectType(int index) {
         if (dataMgr.checkHaveType(index)) {
             dataMgr.changeType(index);
@@ -170,7 +152,6 @@ public class Processor implements IPickSystemProcessor {
         }
     }
 
-    @Override
     public void removeCurrentType() {
         if (dataMgr.checkIsEmptyType()) {
             resultDisplayer.showMsg("此種類尚未儲存");
@@ -179,7 +160,6 @@ public class Processor implements IPickSystemProcessor {
         }
     }
 
-    @Override
     public TypeRecordFormat getRecordFormat() {
         TypeRecordFormat format = new TypeRecordFormat();
         format.currentTypeIndex = dataMgr.getCurrentTypeIndex();
@@ -187,7 +167,6 @@ public class Processor implements IPickSystemProcessor {
         return format;
     }
 
-    @Override
     public boolean checkHaveSavedData() {
         return dataMgr.checkHaveSavedData();
     }
