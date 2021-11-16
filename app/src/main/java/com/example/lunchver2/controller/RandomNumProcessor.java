@@ -1,5 +1,6 @@
 package com.example.lunchver2.controller;
 
+import com.example.lunchver2.general.Rule;
 import com.example.lunchver2.model.ClientMgr;
 import com.example.lunchver2.model.NumPickMachine;
 import com.example.lunchver2.myInterface.IResultDisplayer;
@@ -17,7 +18,8 @@ public class RandomNumProcessor {
 
     public void pickNum(int num1, int num2) {
         String[] result = pickMachine.pickNum(num1, num2);
-        uploadResult(result,"抽數字");
+        String pickType = Rule.EPickType.PickNum.toString();
+        uploadResult(result, pickType);
         resultDisplayer.displayPickResult(result);
     }
 

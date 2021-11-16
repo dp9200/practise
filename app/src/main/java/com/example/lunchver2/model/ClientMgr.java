@@ -1,5 +1,6 @@
 package com.example.lunchver2.model;
 
+import com.example.lunchver2.general.Rule;
 import com.example.lunchver2.myInterface.IThreadAction;
 
 
@@ -86,12 +87,13 @@ public class ClientMgr implements IThreadAction {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.out.println("失敗: " + call.toString() + " E:" + e.toString());
+                String msg = String.format(Rule.apiErrorMsg, call.toString(),e.toString());
+                System.out.println(msg);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                System.out.println("成功");
+                System.out.println(Rule.apiSuccessMsg);
             }
         });
     }

@@ -16,7 +16,18 @@
     <string name="to_random_num_btn">抽選隨機數字</string>
     <string name="to_random_item_btn">抽選自訂項目</string>
     <string name="start_random_btn">抽籤</string>
-    <string name="server_url"></string>
+    <string name="item_select_option">動作選擇</string>
+    <string name="item_select_msg">請選擇針對%1$s的動作</string>
+    <string name="back_to_pool">回抽池</string>
+    <string name="remove_action">移除</string>
+    <string name="cancel_action">取消</string>
+    <string name="confirm_action">確認</string>
+    <string name="type_dialog_title">抽籤種類</string>
+    <string name="type_dialog_msg">請輸入問題 EX:晚餐吃甚麼?</string>
+    <string name="add_dialog_title">新增項目</string>
+    <string name="add_dialog_msg">請填入新項目到抽池中，多個項目請用" ; "隔開</string>
+    <string name="remove_item_msg">確定要全部移除嗎?</string>
+    <string name="empty_num_msg">數字不能為空</string>
     <string-array name="random_type_string">
         <item>自訂項目</item>
         <item>隨機數字</item>

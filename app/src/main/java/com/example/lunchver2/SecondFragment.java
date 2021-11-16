@@ -66,15 +66,14 @@ public class SecondFragment extends Fragment implements IResultDisplayer {
 
     private void showNumEmptyMsg()
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
-        builder.setMessage("數字不能為空的");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        DialogBuilder builder = new DialogBuilder(getString(R.string.empty_num_msg),this.getActivity());
+        builder.setPositiveButton(getString(R.string.confirm_action), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
         });
-        builder.create().show();
+        builder.show();
     }
 
     private boolean checkHaveInput(EditText editText)
@@ -110,7 +109,7 @@ public class SecondFragment extends Fragment implements IResultDisplayer {
     @Override
     public void showMsg(String msg) {
         DialogBuilder format = new DialogBuilder(msg,context);
-        format.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+        format.setPositiveButton(getString(R.string.confirm_action), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();

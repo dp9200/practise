@@ -1,5 +1,6 @@
 package com.example.lunchver2.model;
 
+import com.example.lunchver2.general.Rule;
 import com.example.lunchver2.structObject.SaveFormat;
 
 import java.nio.channels.FileChannel;
@@ -25,7 +26,7 @@ public class DataMgr {
     public boolean checkUsingItemIsEmpty(){return currentType.checkUsingItemIsEmpty();}
 
     public void saveData(String data) {
-        String[] itemValues = data.split(";");
+        String[] itemValues = data.split(Rule.dataSplitSing);
         for (String s : itemValues) {
             currentType.addNewItem(s);
         }

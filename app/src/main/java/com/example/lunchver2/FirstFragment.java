@@ -87,20 +87,21 @@ public class FirstFragment extends Fragment implements IRandomItemDisplayer {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
-                DialogBuilder format = new DialogBuilder("動作選擇","請選擇針對" + item + "的動作",context);
-                format.setPositiveButton("回抽池", new DialogInterface.OnClickListener() {
+                String msg = String.format(getString(R.string.item_select_msg), item);
+                DialogBuilder format = new DialogBuilder(getString(R.string.item_select_option),msg,context);
+                format.setPositiveButton(getString(R.string.back_to_pool), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         processor.recycleItem(item);
                     }
                 });
-                format.setNegativeButton("移除", new DialogInterface.OnClickListener() {
+                format.setNegativeButton(getString(R.string.remove_action), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         processor.removeItem(item);
                     }
                 });
-                format.setNeutralButton("取消", new DialogInterface.OnClickListener() {
+                format.setNeutralButton(getString(R.string.cancel_action), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -137,10 +138,10 @@ public class FirstFragment extends Fragment implements IRandomItemDisplayer {
     }
 
     private void showAddTypeDialog() {
-        DialogBuilder format = new DialogBuilder("抽籤種類", "請輸入問題 EX:晚餐吃甚麼?", context);
+        DialogBuilder format = new DialogBuilder(getString(R.string.type_dialog_title), getString(R.string.type_dialog_msg), context);
         format.addEditText(context)
                 .showCancelBtn()
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.confirm_action), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         addNewType(format.getInputText());
@@ -167,10 +168,10 @@ public class FirstFragment extends Fragment implements IRandomItemDisplayer {
     }
 
     private void showAddItemDialog() {
-        DialogBuilder format = new DialogBuilder("新增項目", "請填入新項目到抽池中，多個項目請用\" ; \"隔開", context);
+        DialogBuilder format = new DialogBuilder(getString(R.string.add_dialog_title), getString(R.string.add_dialog_msg), context);
         format.addEditText(context)
                 .showCancelBtn()
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.confirm_action), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         processor.addNewItem(format.getInputText());
@@ -185,14 +186,14 @@ public class FirstFragment extends Fragment implements IRandomItemDisplayer {
             @Override
             public void onClick(View view) {
 
-                DialogBuilder format = new DialogBuilder("確定要全部移除嗎?", context);
-                format.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                DialogBuilder format = new DialogBuilder(getString(R.string.remove_item_msg), context);
+                format.setPositiveButton(getString(R.string.confirm_action), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         processor.clearItem();
                     }
                 });
-                format.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                format.setNegativeButton(getString(R.string.cancel_action), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -269,7 +270,7 @@ public class FirstFragment extends Fragment implements IRandomItemDisplayer {
     @Override
     public void showMsg(String msg) {
         DialogBuilder format = new DialogBuilder(msg,context);
-        format.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+        format.setPositiveButton(getString(R.string.confirm_action), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
